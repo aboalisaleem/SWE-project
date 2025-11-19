@@ -4,69 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Study Hub - Dashboard</title>
-    <!-- this is link to external CSS file -->
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
     <div class="dashboard-container">
-        
         <header class="top-header">
-            <div class="header-menu-icon">☰</div>
+            <div class="left-menu">☰</div>
+            <h1 class="header-title">Dashboard</h1>
+            <a href="profile.html" class="settings-icon">⚙️</a>
         </header>
 
-        <div class="search-section">
+        <section class="search-section">
             <p class="search-label">Search for friends</p>
             <div class="search-input-wrapper">
                 <span class="search-icon">🔍</span>
                 <input type="search" placeholder="">
             </div>
-        </div>
+        </section>
 
         <main class="feature-grid">
-            
-            <a href="todo.html" class="feature-card large-card">
-                Organize Tasks
-            </a>
-            <a href="study_rooms.html" class="feature-card large-card">
-                Collaborate
-            </a>
+            <a href="todo.html" class="feature-card large-card">Organize Tasks</a>
+            <a href="/html/join_room.html" class="feature-card large-card">Collaborate</a>
 
-            <!-- This container holds the smaller cards, now including KFUPM and Schedule -->
             <div class="bottom-cards-container">
-                
                 <a href="kfupm_resources.html" class="feature-card small-card">
                     <span class="card-icon">👑</span>
                     KFUPM Resources
                 </a>
-
                 <a href="resources.html" class="feature-card small-card">
                     <span class="card-icon">🔍</span>
                     Access Resources
                 </a>
-                
                 <a href="timer.html" class="feature-card small-card">
                     <span class="card-icon">⏱️</span>
-                    Study timer
+                    Study Timer
                 </a>
-                
-                <!-- The Studying Schedule link is now correctly placed with a specific path -->
-                <a href="/html/schedule.html" class="feature-card small-card schedule-card">
+                <a href="schedule.html" class="feature-card small-card">
                     <span class="card-icon">➕</span>
                     Create Schedule
                 </a>
-
             </div>
-            
         </main>
 
         <nav class="bottom-nav">
-            <a href="#" class="nav-icon"><span class="icon-chat">💬</span></a>
-            <a href="#" class="nav-icon"><span class="icon-search">🔍</span></a>
-            <a href="dashboard.html" class="nav-icon active"><span class="icon-home">🏠</span></a>
-            <a href="profile.html" class="nav-icon"><span class="icon-profile">👤</span></a>
-            <a href="notifications.html" class="nav-icon"><span class="icon-notification">🔔</span></a>
+            <a href="#" class="nav-icon">💬</a>
+            <a href="#" class="nav-icon">🔍</a>
+            <a href="dashboard.html" class="nav-icon active">🏠</a>
+            <a href="profile.html" class="nav-icon">👤</a>
+            <a href="notifications.html" class="nav-icon">🔔</a>
         </nav>
-
     </div>
 </body>
 </html>

@@ -1,223 +1,215 @@
-/* ========================================================= */
-/* CRITICAL: IMPORT CORE VARIABLES & BASE STYLES             */
-/* ========================================================= */
-/* This imports the variables (--primary-color, --white, etc.)
-   and the core desktop centering logic from your DNA file. */
-   @import url('signup.css');
+:root {
+  --primary-color: #2c7da0;
+  --light-primary: #4ba3c3;
+  --text-color: #333;
+  --white: #fff;
+  --background-desktop: #f0f2f5;
+  --border: #dcdce0;
+  --accent-border: rgba(44, 125, 160, 0.3);
+}
 
-   /* ========================================================= */
-   /* DASHBOARD MAIN CONTAINER (Mobile First)                   */
-   /* ========================================================= */
-   body {
-     /* Override default body display from signup.css for full-screen scrolling on mobile */
-     display: block; 
-   }
-   
-   .dashboard-container {
-     width: 100%;
-     max-width: 520px; /* Constrain size for mobile/card look */
-     margin: 0 auto;
-     background-color: var(--white);
-     min-height: 100vh;
-     overflow-x: hidden;
-     padding-bottom: 80px; /* Space for fixed bottom nav */
-     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-   }
-   
-   /* ========================================================= */
-   /* HEADER SECTION                                            */
-   /* ========================================================= */
-   .top-header {
-     background-color: var(--primary-color);
-     height: 180px;
-     display: flex;
-     justify-content: flex-end;
-     align-items: flex-start;
-     padding: 20px;
-     border-bottom-left-radius: 40px;
-     border-bottom-right-radius: 40px;
-     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-   }
-   
-   .header-menu-icon {
-     font-size: 2em;
-     color: var(--white);
-     cursor: pointer;
-   }
-   
-   /* ========================================================= */
-   /* SEARCH SECTION (Overlap Effect)                           */
-   /* ========================================================= */
-   .search-section {
-     padding: 0 20px;
-     margin-top: -40px; /* CRITICAL: Overlap with header */
-   }
-   
-   .search-label {
-     font-size: 1.5em;
-     color: black;
-     text-decoration: underline;
-     margin-bottom: 8px;
-   }
-   
-   .search-input-wrapper {
-     display: flex;
-     align-items: center;
-     border: 1px solid #ccc;
-     border-radius: 30px;
-     padding: 10px 18px;
-     background-color: var(--white);
-     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-   }
-   
-   .search-icon {
-     margin-right: 10px;
-     color: #666;
-     font-size: 1.2em;
-   }
-   
-   .search-input-wrapper input {
-     border: none;
-     outline: none;
-     flex-grow: 1;
-     font-size: 1em;
-     background: none;
-   }
-   
-   /* ========================================================= */
-   /* FEATURE GRID (CSS Grid Layout)                            */
-   /* ========================================================= */
-   .feature-grid {
-     /* MOBILE: 2 columns */
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
-     gap: 20px;
-     padding: 25px 20px;
-   }
-   
-   .feature-card {
-     text-decoration: none;
-     color: var(--white);
-     background-color: var(--primary-color);
-     border-radius: 20px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     text-align: center;
-     font-weight: 600;
-     height: 130px;
-     transition: transform 0.25s ease, box-shadow 0.25s ease;
-     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-   }
-   
-   .feature-card:hover {
-     transform: translateY(-3px);
-     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-   }
-   
-   /* --- BOTTOM SECTION (Small Cards Container) --- */
-   .bottom-cards-container {
-     /* CRITICAL: forces this container to span both columns */
-     grid-column: 1 / -1; 
-     /* Inside this span, we define a NEW grid for the small cards */
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 20px;
-     padding: 25px 20px;
-     border-top: 1px solid #eee;
-     border-radius: 40px 40px 0 0;
-     margin-top: -10px;
-     background-color: var(--white);
-     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-   }
-   
-   .small-card {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     height: 110px;
-     font-size: 1em;
-   }
-   
-   .card-icon {
-     font-size: 2.2em;
-     margin-bottom: 6px;
-   }
-   
-   /* ========================================================= */
-   /* BOTTOM NAVIGATION BAR (Fixed Positioning)                 */
-   /* ========================================================= */
-   .bottom-nav {
-     position: fixed;
-     bottom: 0;
-     left: 0;
-     right: 0;
-     height: 70px;
-     background-color: var(--white);
-     border-top: 1px solid #ddd;
-     display: flex;
-     justify-content: space-around;
-     align-items: center;
-     box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
-     z-index: 1000;
-   }
-   
-   .nav-icon {
-     text-decoration: none;
-     color: #999;
-     font-size: 1.7em;
-     padding: 6px;
-     transition: color 0.3s;
-   }
-   
-   .nav-icon.active,
-   .nav-icon:hover {
-     color: var(--primary-color);
-   }
-   
-   /* ========================================================= */
-   /* DESKTOP RESPONSIVE DESIGN (Overrides for > 768px)         */
-   /* ========================================================= */
-   @media (min-width: 768px) {
-     body {
-       display: flex;
-       justify-content: center;
-       align-items: flex-start;
-       padding: 50px 0;
-       background-color: var(--background-desktop);
-     }
-   
-     .dashboard-container {
-       max-width: 1000px; /* Wider card look */
-       border-radius: 20px;
-       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-       min-height: 90vh;
-       padding-bottom: 40px;
-     }
-   
-     .top-header {
-       height: 160px;
-       border-radius: 20px 20px 0 0;
-     }
-   
-     .feature-grid {
-       grid-template-columns: repeat(3, 1fr); /* Desktop: 3 columns */
-       gap: 25px;
-       padding-top: 40px;
-     }
-   
-     .bottom-cards-container {
-       /* CRITICAL: Changes bottom container to 4 columns on desktop */
-       grid-template-columns: repeat(4, 1fr);
-       background: transparent;
-       box-shadow: none;
-       border-top: none;
-       gap: 25px;
-       padding: 25px 20px 0;
-     }
-   
-     .bottom-nav {
-       display: none; /* Hide nav on desktop */
-     }
-   }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: var(--background-desktop);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 550px;
+  width: 100%;
+  background: var(--white);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.top-header {
+  background: var(--primary-color);
+  color: var(--white);
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.left-menu {
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.settings-icon {
+  font-size: 22px;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.search-section {
+  padding: 20px 18px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-label {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--background-desktop);
+  padding: 10px 14px;
+  border-radius: 25px;
+  border: 1px solid var(--accent-border);
+}
+
+.search-icon {
+  margin-right: 10px;
+  font-size: 18px;
+  opacity: 0.6;
+  color: var(--primary-color);
+}
+
+.search-input-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+}
+
+.feature-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.feature-card {
+  background: var(--primary-color); 
+  color: var(--white);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 1px solid var(--accent-border); 
+  transition: 0.2s;
+}
+
+.feature-card:hover {
+  background: var(--light-primary);
+}
+
+.large-card {
+  height: 130px;
+}
+
+.bottom-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.small-card {
+  background: var(--white); 
+  color: var(--text-color);
+  border: 1px solid var(--border); 
+  
+  font-size: 16px;
+  flex-direction: column;
+  padding: 20px;
+  height: 120px;
+  text-align: center;
+}
+
+.small-card:hover {
+  background: var(--secondary-bg, #f9f9f9);
+}
+
+.card-icon {
+  display: block;
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+}
+
+.nav-icon {
+  font-size: 24px;
+  text-decoration: none;
+  color: #7d7d7d;
+}
+
+.nav-icon.active {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+      max-width: 1000px;
+      border-radius: 15px;
+      min-height: auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+  }
+
+  .bottom-nav {
+      display: none;
+  }
+  
+  .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+  }
+  
+  .large-card {
+      grid-column: span 2;
+      height: 180px;
+  }
+  
+  .bottom-cards-container {
+      grid-column: span 4;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      padding: 0;
+  }
+
+  .small-card {
+      height: 150px;
+  }
+}

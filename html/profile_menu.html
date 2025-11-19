@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        :root {
+            --primary-color: #2c7da0; 
+            --light-primary: #4ba3c3;
+            --text-color: #333;
+            --white: #fff;
+            --background-desktop: #f0f2f5;
+            --border-color: #eee;
+            --shadow-subtle: 0 4px 10px rgba(0, 0, 0, 0.15);
+            --nav-height: 70px; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-desktop);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            min-height: 100vh; 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding-bottom: var(--nav-height); 
+            position: relative;
+        }
+        
+        .page-header {
+            background-color: var(--primary-color);
+            height: 100px;
+            display: flex;
+            align-items: flex-start;
+            padding: 15px 20px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-bottom-left-radius: 40px; 
+            border-bottom-right-radius: 40px; 
+        }
+
+        .back-arrow {
+            color: var(--white);
+            font-size: 1.5em;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-top: -60px; 
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .profile-avatar {
+            font-size: 5em; 
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: inline-block;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: var(--white);
+        }
+
+        .profile-heading {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        
+        .profile-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.1s;
+        }
+        
+        .nav-list a:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .nav-list a:last-child {
+            border-bottom: none;
+        }
+
+        .list-item-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .item-icon {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+
+        .item-label {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .action-arrow {
+            color: #ccc;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 500px;
+            height: var(--nav-height);
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-icon {
+            text-decoration: none;
+            color: #999;
+            font-size: 1.5em;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+
+        .nav-icon.active {
+            color: var(--primary-color);
+            background-color: var(--light-primary);
+            border-radius: 50%;
+            padding: 10px;
+        }
+        
+        .nav-icon:not(.active):hover {
+             color: var(--light-primary);
+        }
+
+        /* --- DESKTOP RESPONSIVENESS --- */
+        @media (min-width: 768px) {
+            body {
+                align-items: center;
+            }
+            .profile-container {
+                max-width: 800px;
+                min-height: auto;
+                border-radius: 15px;
+                padding-bottom: 40px;
+            }
+            .page-header {
+                height: 80px;
+                border-radius: 15px 15px 0 0;
+                margin-bottom: 50px;
+            }
+            .bottom-nav {
+                display: none; 
+            }
+            .profile-info {
+                margin-top: -30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        
+        <header class="page-header">
+            <a href="dashboard.html" class="back-arrow">&larr;</a>
+        </header>
+
+        <div class="profile-info">
+            <div class="profile-avatar">👤</div>
+            <h1 class="profile-heading">Profile</h1>
+            <p class="profile-name">Mohammed</p>
+        </div>
+
+        <nav class="nav-list" role="navigation">
+            
+            <a href="profile.html">
+                <div class="list-item-group">
+                    <span class="item-icon">📄</span>
+                    <span class="item-label">Personal Information</span>
+                </div>
+                <span class="action-arrow">&gt;</span>
+            </a>
+
+            <a href="notifications.html">
+                <div class="list-item-group">
+                    <span class="item-icon">🔔</span>
+                    <span class="item-label">Notification</span>
+                </div>
+                <span class="action-arrow">&gt;</span>
+            </a>
+
+            <a href="settings.html">
+                <div class="list-item-group">
+                    <span class="item-icon">⚙️</span>
+                    <span class="item-label">Settings</span>
+                </div>
+                <span class="action-arrow">&gt;</span>
+            </a>
+            
+            <a href="login.html" style="color: #ff4d4d; border-bottom: none;">
+                <div class="list-item-group">
+                    <span class="item-icon" style="color: #ff4d4d;">🔒</span>
+                    <span class="item-label">Log Out</span>
+                </div>
+                <span class="action-arrow">&gt;</span>
+            </a>
+
+        </nav>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-icon" title="Chat">💬</a>
+            <a href="#" class="nav-icon" title="Search">🔍</a>
+            <a href="dashboard.html" class="nav-icon" title="Home">🏠</a>
+            <a href="profile_menu.html" class="nav-icon active" title="Profile">👤</a>
+            <a href="notifications.html" class="nav-icon" title="Notifications">🔔</a>
+        </nav>
+
+    </div>
+    
+</body>
+</html>
