@@ -1,63 +1,67 @@
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Dashboard.css";
 
-function Dashboard() {
+export default function Dashboard() {
   return (
     <div className="dashboard-container">
+      {/* HEADER */}
       <header className="top-header">
-        <div className="header-menu-icon">☰</div>
+        <div className="left-menu">☰</div>
+        <h1 className="header-title">Dashboard</h1>
+        <Link to="/profile" className="settings-icon">⚙️</Link>
       </header>
 
-      <div className="search-section">
+      {/* SEARCH */}
+      <section className="search-section">
         <p className="search-label">Search for friends</p>
         <div className="search-input-wrapper">
           <span className="search-icon">🔍</span>
           <input type="search" placeholder="" />
         </div>
-      </div>
+      </section>
 
+      {/* MAIN FEATURE GRID */}
       <main className="feature-grid">
         <Link to="/todo" className="feature-card large-card">
           Organize Tasks
         </Link>
-        <Link to="/chat" className="feature-card large-card">
+
+        <Link to="/join-room" className="feature-card large-card">
           Collaborate
         </Link>
 
         <div className="bottom-cards-container">
-          <Link to="/chat" className="feature-card small-card">
+          <Link to="/kfupm-resources" className="feature-card small-card">
+            <span className="card-icon">👑</span>
+            KFUPM Resources
+          </Link>
+
+          <Link to="/resources" className="feature-card small-card">
             <span className="card-icon">🔍</span>
             Access Resources
           </Link>
+
           <Link to="/timer" className="feature-card small-card">
             <span className="card-icon">⏱️</span>
-            Study timer
+            Study Timer
           </Link>
-          <Link to="/todo" className="feature-card small-card schedule-card">
-            <span className="card-icon">📅</span>
-            Studying Schedule
+
+          <Link to="/schedule" className="feature-card small-card">
+            <span className="card-icon">➕</span>
+            Create Schedule
           </Link>
         </div>
       </main>
 
+      {/* BOTTOM NAV */}
       <nav className="bottom-nav">
-        <Link to="/chat" className="nav-icon">
-          <span className="icon-chat">💬</span>
-        </Link>
-        <Link to="/dashboard" className="nav-icon">
-          <span className="icon-search">🔍</span>
-        </Link>
-        <Link to="/dashboard" className="nav-icon active">
-          <span className="icon-home">🏠</span>
-        </Link>
-        <Link to="/profile" className="nav-icon">
-          <span className="icon-profile">👤</span>
-        </Link>
-        <Link to="/dashboard" className="nav-icon">
-          <span className="icon-notification">🔔</span>
-        </Link>
+        <Link to="/chat" className="nav-icon">💬</Link>
+        <Link to="/resources" className="nav-icon">🔍</Link>
+        <Link to="/dashboard" className="nav-icon active">🏠</Link>
+        <Link to="/profile" className="nav-icon">👤</Link>
+        <Link to="/notifications" className="nav-icon">🔔</Link>
       </nav>
     </div>
   );
 }
-
-export default Dashboard;
