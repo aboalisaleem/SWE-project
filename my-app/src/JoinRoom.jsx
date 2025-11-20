@@ -48,7 +48,7 @@ const JoinRoom = () => {
         <h1>Join Study Rooms</h1>
 
         <div className="header-actions">
-          <Link to="/create_room" id="create-room-btn">Create Room</Link>
+          <Link to="/create-room" id="create-room-btn">Create Room</Link>
         </div>
       </header>
 
