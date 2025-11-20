@@ -1,125 +1,165 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./Todo.css";
 
-function Todo() {
-  const [tasks, setTasks] = useState([]);
-  const [newTaskInput, setNewTaskInput] = useState('');
-  const [quickNotes, setQuickNotes] = useState('');
+const Todo = () => {
 
-  // Load from localStorage on mount
+  const getTasks = () =>
+    JSON.parse(localStorage.getItem("tasks")) || [];
+
+  const saveTasks = (tasks) =>
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  
+  const [tasks, setTasks] = useState(getTasks());
+  const [notes, setNotes] = useState(
+    localStorage.getItem("quickNotes") || ""
+  );
+  const [newTaskInput, setNewTaskInput] = useState("");
+
+
   useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const savedNotes = localStorage.getItem('quickNotes') || '';
-    setTasks(savedTasks);
-    setQuickNotes(savedNotes);
-  }, []);
+    saveTasks(tasks);
+  }, [tasks]);
 
-  // Save tasks to localStorage
-  const saveTasks = (newTasks) => {
-    localStorage.setItem('tasks', JSON.stringify(newTasks));
-    setTasks(newTasks);
-  };
+ 
+  useEffect(() => {
+    localStorage.setItem("quickNotes", notes);
+  }, [notes]);
 
-  // Save notes to localStorage
-  const saveNotes = (notes) => {
-    localStorage.setItem('quickNotes', notes);
-    setQuickNotes(notes);
-  };
 
-  // Parse task input to extract due date
-  const parseTaskInput = (input) => {
-    const dateRegex = /(by|due|on)\s*(\w+\s+\d{1,2})|(\w+\s+\d{1,2})$/i;
+  function parseTaskInput(input) {
+    const dateRegex =
+      /(by|due|on)\s*(\w+\s+\d{1,2})|(\w+\s+\d{1,2})$/i;
+
     const match = input.match(dateRegex);
 
     if (match) {
       let dueDate = match[2] || match[3];
-      const description = input.replace(match[0], '').trim();
+      const description = input
+        .replace(match[0], "")
+        .trim();
+
       return {
         description: description || input,
-        dueDate: dueDate
+        dueDate: dueDate,
       };
     }
+
     return { description: input, dueDate: null };
-  };
+  }
 
-  // Add new task
-  const handleAddTask = (event) => {
+ 
+  const addTask = (event) => {
     event.preventDefault();
-    const inputValue = newTaskInput.trim();
 
-    if (inputValue === '') return;
+    if (newTaskInput.trim() === "") return;
 
-    const { description, dueDate } = parseTaskInput(inputValue);
-
-    const newTask = {
-      description,
-      dueDate,
-      completed: false
-    };
-
-    saveTasks([...tasks, newTask]);
-    setNewTaskInput('');
-  };
-
-  // Toggle task completion
-  const toggleComplete = (index) => {
-    const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
+    const { description, dueDate } = parseTaskInput(
+      newTaskInput.trim()
     );
-    saveTasks(updatedTasks);
+
+    const updated = [
+      ...tasks,
+      { description, dueDate, completed: false },
+    ];
+
+    setTasks(updated);
+    setNewTaskInput("");
   };
 
-  // Delete task
-  const deleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    saveTasks(updatedTasks);
+
+  const toggleComplete = (index) => {
+    const updated = [...tasks];
+    updated[index].completed = !updated[index].completed;
+    setTasks(updated);
   };
+
+  
+  const deleteTask = (index) => {
+    const updated = [...tasks];
+    updated.splice(index, 1);
+    setTasks(updated);
+  };
+
 
   return (
     <div className="todo-container">
+      {/* Header */}
       <div className="page-header">
-        <a href="/dashboard" className="back-arrow"> &lt; </a>
+        <Link to="/dashboard" className="back-arrow">
+          &lt;
+        </Link>
       </div>
 
       <h1 className="page-title">My To Do List</h1>
 
-      <form id="new-task-form" onSubmit={handleAddTask}>
+      {/* NEW TASK FORM */}
+      <form id="new-task-form" onSubmit={addTask}>
         <input
           type="text"
           id="new-task-input"
           placeholder="Add a new task (e.g., Study SWE 363 by Oct 20)"
+          required
           value={newTaskInput}
           onChange={(e) => setNewTaskInput(e.target.value)}
-          required
         />
-        <button type="submit" id="add-task-btn">Add</button>
+        <button type="submit" id="add-task-btn">
+          Add
+        </button>
       </form>
 
+      {/* TASK LIST */}
       <ul id="task-list">
         {tasks.map((task, index) => (
-          <li key={index} className={`task-item ${task.completed ? 'completed' : ''}`}>
-            <div className="task-checkbox-wrapper" onClick={() => toggleComplete(index)}>
+          <li
+            key={index}
+            className={`task-item ${
+              task.completed ? "completed" : ""
+            }`}
+          >
+            <div
+              className="task-checkbox-wrapper"
+              onClick={() => toggleComplete(index)}
+            >
               <span className="task-check-mark">✓</span>
             </div>
+
             <div className="task-details">
-              <p className="task-description">{task.description}</p>
-              {task.dueDate && <span className="task-due-date">due date: {task.dueDate}</span>}
+              <p className="task-description">
+                {task.description}
+              </p>
+
+              {task.dueDate && (
+                <span className="task-due-date">
+                  due date: {task.dueDate}
+                </span>
+              )}
             </div>
-            <button className="delete-btn" onClick={() => deleteTask(index)}>X</button>
+
+            <button
+              className="delete-btn"
+              onClick={() => deleteTask(index)}
+            >
+              X
+            </button>
           </li>
         ))}
       </ul>
 
+      {/* QUICK NOTES */}
       <div className="notes-section">
         <h2 className="notes-title">Quick Notes</h2>
+
         <textarea
           id="quick-notes"
           placeholder="Enter your notes here... (Notes save automatically)"
-          value={quickNotes}
-          onChange={(e) => saveNotes(e.target.value)}
-        />
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        ></textarea>
       </div>
     </div>
   );
-}
+};
 
 export default Todo;
