@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./MissingPASS.css";
 
 function MissingPASS() {
   const [email, setEmail] = useState('');

@@ -11,6 +11,16 @@
 * {
   box-sizing: border-box;
 }
+.outer-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--background-desktop);
+  min-height: 100vh;
+  padding-top: 40px;
+}
+
 
 body {
   margin: 0;
@@ -18,12 +28,7 @@ body {
   font-family: "Inter", sans-serif;
   background: var(--background-desktop);
   color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
 }
-
 .dashboard-container {
   display: flex;
   flex-direction: column;
