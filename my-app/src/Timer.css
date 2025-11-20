@@ -7,7 +7,7 @@
   --accent-color: #4ba3c3;
 }
 
-/* GLOBAL RESET & BODY LAYOUT                                */
+
 * {
   margin: 0;
   padding: 0;
@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* MAIN TIMER CONTAINER                                 */
+
 .timer-container {
   width: 100%;
   max-width: 520px;
@@ -36,7 +36,7 @@ body {
   padding-bottom: 60px;
 }
 
-/* HEADER SECTION                                            */
+
 .top-header-bar {
   background-color: var(--primary-color);
   height: 180px;
@@ -45,7 +45,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* TIMER DISPLAY (Circle)                                    */
+
 .timer-display {
   width: 270px;
   height: 270px;
@@ -71,7 +71,7 @@ body {
   opacity: 0.9;
 }
 
-/* CONTROL BUTTONS                                           */
+
 .controls-group {
   display: flex;
   justify-content: center;
@@ -113,9 +113,7 @@ body {
   background-color: #4CAF50;
 }
 
-/* ========================================================= */
-/* NEW TIMER INPUT GROUP                                     */
-/* ========================================================= */
+
 .new-timer-group {
   background: var(--primary-color);
   color: var(--white);
