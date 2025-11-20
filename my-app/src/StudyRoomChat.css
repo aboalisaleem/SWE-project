@@ -1,0 +1,215 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+/* ---------- DIMENSIONS ---------- */
+:root {
+  --header-h: 60px;
+  --pinned-h: 64px;
+  --input-h: 64px;
+  --nav-h: 56px;
+  --primary: #2c7da0;
+  --bg-light: #f0f2f5;
+  --chat-bg: #e9f3f7;
+  --user-bubble: #79d2e1;
+  --partner-bubble: #c0c0c0;
+  --white: #fff;
+  --text: #333;
+}
+
+/* Layout */
+html, body { height: 100%; }
+body {
+  background-color: var(--bg-light);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.chat-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  background-color: var(--chat-bg);
+  overflow: hidden;
+}
+
+/* HEADER */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: var(--header-h);
+  background-color: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+}
+.back-btn { color: #fff; font-size: 1.2rem; text-decoration: none; }
+.room-name { flex: 1; text-align: center; font-weight: 700; }
+
+.settings-button-wrap { position: relative; }
+.settings-btn {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.settings-menu {
+  position: absolute;
+  top: calc(var(--header-h) + 6px);
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  min-width: 190px;
+  display: none;
+  overflow: hidden;
+  z-index: 2000;
+}
+.settings-menu button {
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.settings-menu button:hover {
+  background: #f5f7f8;
+}
+
+/* PINNED LINKS */
+.pinned-links {
+  position: fixed;
+  top: var(--header-h);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: var(--pinned-h);
+  padding: 8px 12px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 900;
+}
+.pinned-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.pinned-row {
+  display: flex;
+  gap: 8px;
+}
+.pinned-item {
+  background: var(--partner-bubble);
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+/* CHAT AREA */
+.chat-area {
+  position: absolute;
+  top: calc(var(--header-h) + var(--pinned-h));
+  bottom: calc(var(--input-h) + var(--nav-h));
+  left: 0;
+  right: 0;
+  padding: 14px 12px;
+  overflow-y: auto;
+}
+
+.message { margin-bottom: 12px; display: flex; }
+.message.partner { justify-content: flex-start; }
+.message.user { justify-content: flex-end; }
+.message.system { justify-content: center; }
+
+.bubble {
+  max-width: 78%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: var(--partner-bubble);
+  color: var(--text);
+}
+.message.user .bubble { background: var(--user-bubble); }
+.message.system .bubble { width: 95%; border-radius: 12px; }
+
+/* INPUT */
+.input-bar {
+  position: fixed;
+  bottom: var(--nav-h);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  z-index: 1000;
+}
+.input-bar input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 24px;
+  border: 1px solid #ddd;
+}
+.send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: var(--nav-h);
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-icon {
+  font-size: 1.3rem;
+  color: #777;
+  text-decoration: none;
+}
+.nav-icon.active {
+  color: var(--primary);
+}
+
+@media (min-width: 768px) {
+  .chat-container {
+    max-width: 800px;
+    border-radius: 12px;
+  }
+  .top-header,
+  .pinned-links,
+  .input-bar,
+  .bottom-nav {
+    max-width: 800px;
+  }
+}
