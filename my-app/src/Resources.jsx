@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./Resources.css";
 
 const Resources = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Hard-coded resource 
   const resources = [
     {
       title: "Calculus Chapter 5 Notes",
@@ -32,31 +32,30 @@ const Resources = () => {
     },
   ];
 
-  // Category click handler
-  const handleCategoryClick = (name) => {
-    alert(`Showing resources for: ${name}`);
+  const handleCategoryClick = (categoryName) => {
+    alert(`Showing resources for: ${categoryName}`);
   };
 
-  // Download button click handler
-  const handleDownload = (title) => {
-    alert(`Downloading: ${title}`);
+  const handleDownload = (title, type) => {
+    if (type === "link") {
+      alert("Opening link...");
+    } else {
+      alert(`Downloading: ${title}`);
+    }
   };
 
-  // Upload button
   const handleUpload = () => {
     alert("Upload resource feature would open here");
   };
 
   return (
     <div className="resources-container">
-      {/* Header */}
       <div className="page-header">
         <Link to="/dashboard" className="back-arrow">←</Link>
       </div>
 
       <h1 className="page-title">Study Resources</h1>
 
-      {/* Search */}
       <div className="search-section">
         <div className="search-input-wrapper">
           <span className="search-icon">🔍</span>
@@ -69,7 +68,6 @@ const Resources = () => {
         </div>
       </div>
 
-      {/* Categories */}
       <div className="categories-section">
         <h2 className="section-title">Categories</h2>
 
@@ -94,15 +92,12 @@ const Resources = () => {
         </div>
       </div>
 
-      {/* Recent Resources */}
       <div className="recent-section">
         <h2 className="section-title">Recent Resources</h2>
 
         <div className="resources-list">
           {resources
-            .filter((r) =>
-              r.title.toLowerCase().includes(searchTerm)
-            )
+            .filter((r) => r.title.toLowerCase().includes(searchTerm))
             .map((res, index) => (
               <div className="resource-item" key={index}>
                 <div className={`resource-icon ${res.type}`}>{res.icon}</div>
@@ -114,11 +109,7 @@ const Resources = () => {
 
                 <button
                   className="download-btn"
-                  onClick={() =>
-                    res.type === "link"
-                      ? alert("Opening link...")
-                      : handleDownload(res.title)
-                  }
+                  onClick={() => handleDownload(res.title, res.type)}
                 >
                   {res.type === "link" ? "↗" : "↓"}
                 </button>
@@ -127,12 +118,10 @@ const Resources = () => {
         </div>
       </div>
 
-      {/* Upload button */}
       <button className="upload-btn" onClick={handleUpload}>
         + Upload Resource
       </button>
 
-      {/* Bottom Navigation */}
       <nav className="bottom-nav">
         <Link to="/chat" className="nav-icon">💬</Link>
         <Link to="/resources" className="nav-icon">🔍</Link>
@@ -145,3 +134,5 @@ const Resources = () => {
 };
 
 export default Resources;
+
+
