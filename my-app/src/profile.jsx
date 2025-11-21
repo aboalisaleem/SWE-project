@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./profile.css";
 
-function Profile() {
-  const [isEditing, setIsEditing] = useState(false);
+const Profile = () => {
+  
   const [userData, setUserData] = useState({
     name: "Mohammed Abdullah",
     phone: "+966 500 050 055",
     email: "mohammed@kfupm.edu.sa",
     gender: "Male",
-    dob: "2003-05-11" // YYYY-MM-DD for date input
+    dob: "2003-05-11",
   });
 
-  const [formData, setFormData] = useState({ ...userData });
+ 
+  const [isEditing, setIsEditing] = useState(false);
 
-  const handleEditClick = () => {
-    setFormData({ ...userData });
-    setIsEditing(true);
-  };
-
-  const handleCancelClick = () => {
-    setIsEditing(false);
-  };
-
-  const handleSaveProfile = (event) => {
-    event.preventDefault();
-    setUserData({ ...formData });
-    setIsEditing(false);
-  };
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [id.replace('input-', '')]: value
-    }));
-  };
-
-  const formatDateForDisplay = (dateStr) => {
-    const [year, month, day] = dateStr.split('-');
+  // (DD-MM-YYYY)
+  const formatDobDisplay = (dob) => {
+    const [year, month, day] = dob.split("-");
     return `${day}-${month}-${year}`;
+  };
+
+  // Save changes
+  const handleSave = (e) => {
+    e.preventDefault();
+
+    const newData = {
+      name: e.target.inputName.value.trim(),
+      phone: e.target.inputPhone.value.trim(),
+      gender: e.target.inputGender.value,
+      dob: e.target.inputDob.value,
+      email: userData.email, 
+    };
+
+    setUserData(newData);
+    setIsEditing(false);
   };
 
   return (
     <div className="profile-container">
+      {/* Header */}
       <div className="page-header">
-        <a href="/dashboard" className="back-arrow"> &lt; </a>
+        <Link to="/dashboard" className="back-arrow">
+          &lt;
+        </Link>
       </div>
 
       <h1 className="profile-heading">Personal Information</h1>
@@ -57,7 +57,7 @@ function Profile() {
                 <span className="item-icon">👤</span>
                 <span className="info-label">Name</span>
               </div>
-              <div className="info-value" id="display-name">{userData.name}</div>
+              <div className="info-value">{userData.name}</div>
               <span className="action-arrow">&gt;</span>
             </li>
 
@@ -66,7 +66,7 @@ function Profile() {
                 <span className="item-icon">📞</span>
                 <span className="info-label">Phone Number</span>
               </div>
-              <div className="info-value" id="display-phone">{userData.phone}</div>
+              <div className="info-value">{userData.phone}</div>
               <span className="action-arrow">&gt;</span>
             </li>
 
@@ -75,7 +75,7 @@ function Profile() {
                 <span className="item-icon">📧</span>
                 <span className="info-label">Email</span>
               </div>
-              <div className="info-value" id="display-email">{userData.email}</div>
+              <div className="info-value">{userData.email}</div>
               <span className="action-arrow">&gt;</span>
             </li>
 
@@ -92,7 +92,7 @@ function Profile() {
                 <span className="item-icon">♂️/♀️</span>
                 <span className="info-label">Gender</span>
               </div>
-              <div className="info-value" id="display-gender">{userData.gender}</div>
+              <div className="info-value">{userData.gender}</div>
               <span className="action-arrow">&gt;</span>
             </li>
 
@@ -101,12 +101,12 @@ function Profile() {
                 <span className="item-icon">🎂</span>
                 <span className="info-label">Date of birth</span>
               </div>
-              <div className="info-value" id="display-dob">{formatDateForDisplay(userData.dob)}</div>
+              <div className="info-value">{formatDobDisplay(userData.dob)}</div>
               <span className="action-arrow">&gt;</span>
             </li>
           </ul>
 
-          <button id="edit-btn" className="btn-primary" onClick={handleEditClick}>
+          <button id="edit-btn" className="btn-primary" onClick={() => setIsEditing(true)}>
             Edit Profile
           </button>
         </div>
@@ -114,14 +114,14 @@ function Profile() {
 
       {/* EDIT MODE */}
       {isEditing && (
-        <form id="edit-profile-form" className="profile-card" onSubmit={handleSaveProfile}>
+        <form id="edit-profile-form" className="profile-card" onSubmit={handleSave}>
           <div className="form-input-group">
             <label htmlFor="input-name">Name</label>
             <input
               type="text"
               id="input-name"
-              value={formData.name}
-              onChange={handleInputChange}
+              name="inputName"
+              defaultValue={userData.name}
               required
             />
           </div>
@@ -131,14 +131,14 @@ function Profile() {
             <input
               type="tel"
               id="input-phone"
-              value={formData.phone}
-              onChange={handleInputChange}
+              name="inputPhone"
+              defaultValue={userData.phone}
             />
           </div>
 
           <div className="form-input-group">
             <label htmlFor="input-gender">Gender</label>
-            <select id="input-gender" value={formData.gender} onChange={handleInputChange}>
+            <select id="input-gender" name="inputGender" defaultValue={userData.gender}>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
@@ -150,20 +150,21 @@ function Profile() {
             <input
               type="date"
               id="input-dob"
-              value={formData.dob}
-              onChange={handleInputChange}
+              name="inputDob"
+              defaultValue={userData.dob}
             />
           </div>
 
           <button type="submit" className="btn-primary">
             Save Changes
           </button>
+
           <button
             type="button"
             id="cancel-btn"
             className="btn-primary"
-            style={{ backgroundColor: '#ff4d4d', marginTop: '10px' }}
-            onClick={handleCancelClick}
+            style={{ backgroundColor: "#ff4d4d", marginTop: "10px" }}
+            onClick={() => setIsEditing(false)}
           >
             Cancel
           </button>
@@ -171,6 +172,6 @@ function Profile() {
       )}
     </div>
   );
-}
+};
 
 export default Profile;

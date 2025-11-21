@@ -1,0 +1,22 @@
+.reset-password-title {
+  text-align: center;
+  margin-top: 15%;
+}
+
+#reset-password-form {
+  padding: 0 25px;
+}
+
+.reset-instruction-text {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 1em;
+  padding: 0 25px 20px;
+}
+
+.success-message {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 1em;
+  margin-top: 15px;
+}
