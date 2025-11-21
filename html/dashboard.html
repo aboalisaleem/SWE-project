@@ -9,7 +9,7 @@
 <body>
     <div class="dashboard-container">
         <header class="top-header">
-            <div class="left-menu">☰</div>
+            <div class="left-menu" id="menu-toggle">☰</div>
             <h1 class="header-title">Dashboard</h1>
             <a href="profile.html" class="settings-icon">⚙️</a>
         </header>
@@ -54,5 +54,32 @@
             <a href="notifications.html" class="nav-icon">🔔</a>
         </nav>
     </div>
+
+    <div id="overlay"></div>
+
+    <aside id="sidebar-menu">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Student Hub Menu</h2>
+            <button id="menu-close" class="close-btn">X</button>
+        </div>
+        
+        <div class="sidebar-content">
+            <a href="profile_menu.html" class="sidebar-link">
+                <span class="link-icon">👤</span> My Profile
+            </a>
+            <a href="notifications.html" class="sidebar-link">
+                <span class="link-icon">🔔</span> Notifications
+            </a>
+            <a href="settings.html" class="sidebar-link">
+                <span class="link-icon">⚙️</span> Settings
+            </a>
+            <hr class="sidebar-divider">
+            <a href="login.html" class="sidebar-link logout-link">
+                <span class="link-icon">🚪</span> Log Out
+            </a>
+        </div>
+    </aside>
+
+    <script src="/js/dashboard.js"></script>
 </body>
 </html>
