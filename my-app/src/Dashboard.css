@@ -8,19 +8,10 @@
   --accent-border: rgba(44, 125, 160, 0.3);
 }
 
+/* Base Reset */
 * {
   box-sizing: border-box;
 }
-.outer-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: var(--background-desktop);
-  min-height: 100vh;
-  padding-top: 40px;
-}
-
 
 body {
   margin: 0;
@@ -28,7 +19,13 @@ body {
   font-family: "Inter", sans-serif;
   background: var(--background-desktop);
   color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
 }
+
+/* MAIN DASHBOARD LAYOUT */
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -92,15 +89,7 @@ body {
   color: var(--primary-color);
 }
 
-.search-input-wrapper input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 15px;
-}
-
-/* FEATURE GRID */
+/* GRID + CARDS */
 .feature-grid {
   display: flex;
   flex-direction: column;
@@ -131,7 +120,6 @@ body {
   height: 130px;
 }
 
-/* SMALL CARDS */
 .bottom-cards-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -184,38 +172,103 @@ body {
   font-weight: 700;
 }
 
-/* DESKTOP */
-@media (min-width: 768px) {
-  .dashboard-container {
-    max-width: 1000px;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    min-height: auto;
-    margin-top: 30px;
-  }
-
-  .bottom-nav {
-    display: none; /* Hide on desktop */
-  }
-
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-  }
-
-  .large-card {
-    grid-column: span 2;
-    height: 180px;
-  }
-
-  .bottom-cards-container {
-    grid-column: span 4;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-  }
-
-  .small-card {
-    height: 150px;
-  }
+/* SIDEBAR + OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 280px;
+  max-width: 80%;
+  background: var(--white);
+  z-index: 1060;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-menu.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: none;
+  border: 1px solid var(--white);
+  color: var(--white);
+  font-size: 1.1em;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar-content {
+  padding: 10px 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.1em;
+  transition: background 0.2s;
+}
+
+.sidebar-link:hover {
+  background: var(--background-desktop);
+  border-left: 5px solid var(--primary-color);
+}
+
+.link-icon {
+  font-size: 1.2em;
+  margin-right: 15px;
+  color: var(--primary-color);
+}
+
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.logout-link {
+  color: #cc0000;
+}
+
+.logout-link .link-icon {
+  color: #cc0000;
+}
+
