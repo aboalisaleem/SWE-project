@@ -19,7 +19,7 @@ import Schedule from "./Schedule";
 // NEW PAGES
 import Notifications from "./notifications";
 import Settings from "./Settings";
-import ProfileMenu from "./ProfileMenu";
+import ProfileMenu from "./PROFILEMENU";
 
 function App() {
   return (
