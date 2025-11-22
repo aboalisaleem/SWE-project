@@ -1,94 +1,101 @@
-import React, { useState, useEffect, useRef } from "react";
+ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./StudyRoomChat.css";
 
 export default function StudyRoomChat() {
   const navigate = useNavigate();
-
   const chatAreaRef = useRef(null);
+  
   const [messages, setMessages] = useState([
-    { type: "partner", text: "what task are you working on?" },
-    { type: "partner", text: "do you want help?" },
-    { type: "user", text: "no thanks, I'm working on debugging." },
-    { type: "user", text: "I'll join the timer in 10 minutes." },
+    { 
+      type: "partner", 
+      text: "what task are you working on?",
+      time: "10:30 AM"
+    },
+    { 
+      type: "partner", 
+      text: "do you want help?",
+      time: "10:31 AM"
+    },
+    { 
+      type: "user", 
+      text: "no thanks, I'm working on debugging.",
+      time: "10:32 AM"
+    },
+    { 
+      type: "user", 
+      text: "I'll join the timer in 10 minutes.",
+      time: "10:33 AM"
+    },
     {
       type: "system",
-      text: (
-        <>
-          <strong>Work Stuff</strong>
-          <br />
-          <a href="#" className="file-link">
-            http://teem29.swe363.com
-          </a>
-          <span className="tag">file</span>
-        </>
-      ),
+      text: "📎 Work Stuff",
+      time: "10:34 AM"
     },
   ]);
 
   const [chatInput, setChatInput] = useState("");
-
-  // Settings menu
   const [menuOpen, setMenuOpen] = useState(false);
+  const [pinned, setPinned] = useState([
+    "http://teem29.swe363.com",
+    "Study File: Chapter 5 PDF",
+  ]);
 
-  // Scroll to bottom
+  const getCurrentTime = () => {
+    return new Date().toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit',
+      hour12: true 
+    });
+  };
+
   const scrollToBottom = (instant = false) => {
     const el = chatAreaRef.current;
     if (!el) return;
-    if (instant) {
-      el.scrollTop = el.scrollHeight;
-    } else {
-      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
-    }
+    
+    setTimeout(() => {
+      if (instant) {
+        el.scrollTop = el.scrollHeight;
+      } else {
+        el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+      }
+    }, 100);
   };
 
   useEffect(() => {
     scrollToBottom(true);
   }, []);
 
-  // Send message
   const sendMessage = () => {
-    if (!chatInput.trim()) return;
+    const messageText = chatInput.trim();
+    if (!messageText) return;
 
-    const userMsg = { type: "user", text: chatInput };
-    setMessages((prev) => [...prev, userMsg]);
+    const userMsg = { 
+      type: "user", 
+      text: messageText,
+      time: getCurrentTime()
+    };
+    
+    setMessages(prev => [...prev, userMsg]);
     setChatInput("");
-
-    setTimeout(() => {
-      const autoResponse = {
-        type: "partner",
-        text: `Got it — "${chatInput}" 👍`,
-      };
-      setMessages((prev) => [...prev, autoResponse]);
-      scrollToBottom();
-    }, 700);
-
     scrollToBottom();
   };
 
   const handleKey = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
   };
 
-  // Add pinned resource
   const addPinned = () => {
     const newLink = prompt("Enter URL or resource name to pin:");
     if (!newLink) return;
 
-    setPinned((prev) => [...prev, newLink]);
-    alert("Pinned resource added.");
+    setPinned(prev => [...prev, newLink]);
+    setMenuOpen(false);
   };
 
-  // Pinned list state
-  const [pinned, setPinned] = useState([
-    "http://teem29.swe363.com",
-    "Study File: Chapter 5 PDF",
-  ]);
-
-  // Clicking outside menu closes it
   useEffect(() => {
     const closeMenuOnClick = (e) => {
       if (!e.target.closest(".settings-button-wrap")) {
@@ -99,15 +106,37 @@ export default function StudyRoomChat() {
     return () => document.removeEventListener("click", closeMenuOnClick);
   }, []);
 
+  const renderMessage = (msg, index) => {
+    if (msg.type === "system") {
+      return (
+        <div key={index} className="message system">
+          <div className="bubble">
+            {msg.text}
+            <div className="message-time">{msg.time}</div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div key={index} className={`message ${msg.type}`}>
+        <div className="bubble">
+          {msg.text}
+          <div className="message-time">{msg.time}</div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="chat-container">
       {/* HEADER */}
       <header className="top-header">
         <Link to="/dashboard" className="back-btn">
-          ←
+          ‹
         </Link>
 
-        <div className="room-name">Room Name</div>
+        <div className="room-name">Study Group</div>
 
         <div className="settings-button-wrap">
           <button
@@ -115,11 +144,11 @@ export default function StudyRoomChat() {
             aria-expanded={menuOpen}
             aria-haspopup="true"
             onClick={(e) => {
-            e.stopPropagation();
-            setMenuOpen((prev) => !prev);
-          }}
+              e.stopPropagation();
+              setMenuOpen(prev => !prev);
+            }}
           >
-            ⚙️
+            ⋮
           </button>
 
           <div
@@ -134,17 +163,24 @@ export default function StudyRoomChat() {
                 navigate("/room-settings");
               }}
             >
-              Open Room Settings
+              🛠️ Room Settings
             </button>
 
             <button
               type="button"
+              onClick={addPinned}
+            >
+              📌 Add Pinned Resource
+            </button>
+            
+            <button
+              type="button"
               onClick={() => {
                 setMenuOpen(false);
-                addPinned();
+                alert("Group info opened");
               }}
             >
-              Add Pinned Resource
+              👥 Group Info
             </button>
           </div>
         </div>
@@ -152,13 +188,17 @@ export default function StudyRoomChat() {
 
       {/* PINNED LINKS */}
       <section className="pinned-links">
-        <div className="pinned-row">
-          <div className="pinned-title">Pinned Resources</div>
-        </div>
-
+        <div className="pinned-title">📌 Pinned Resources</div>
         <div className="pinned-row">
           {pinned.map((item, index) => (
-            <a key={index} className="pinned-item" href="#" title={item}>
+            <a 
+              key={index} 
+              className="pinned-item" 
+              href={item.startsWith('http') ? item : '#'} 
+              target={item.startsWith('http') ? "_blank" : "_self"}
+              rel="noopener noreferrer"
+              title={item}
+            >
               {item}
             </a>
           ))}
@@ -167,11 +207,7 @@ export default function StudyRoomChat() {
 
       {/* CHAT AREA */}
       <main className="chat-area" ref={chatAreaRef}>
-        {messages.map((msg, i) => (
-          <div key={i} className={`message ${msg.type}`}>
-            <div className="bubble">{msg.text}</div>
-          </div>
-        ))}
+        {messages.map((msg, index) => renderMessage(msg, index))}
       </main>
 
       {/* INPUT BAR */}
@@ -180,10 +216,16 @@ export default function StudyRoomChat() {
           value={chatInput}
           onChange={(e) => setChatInput(e.target.value)}
           onKeyDown={handleKey}
-          placeholder="Type a message…"
+          placeholder="Type a message..."
+          aria-label="Type your message"
         />
-        <button className="send-btn" onClick={sendMessage}>
-          ↑
+        <button 
+          className="send-btn" 
+          onClick={sendMessage}
+          disabled={!chatInput.trim()}
+          aria-label="Send message"
+        >
+          ➤
         </button>
       </div>
 
