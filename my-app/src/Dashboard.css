@@ -43,41 +43,76 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 20px;
-  font-size: 20px;
-  font-weight: 600;
+  padding: 15px 20px;
+  position: relative;
+  min-height: 60px;
+  width: 100% ;
 }
 
-/* ADD THIS - Missing from your CSS */
 .header-title {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--white);
 }
 
 .left-menu {
   font-size: 24px;
   cursor: pointer;
   color: var(--white);
+  z-index: 1;
 }
 
 .settings-icon {
   font-size: 22px;
   text-decoration: none;
   color: var(--white);
+  z-index: 1;
 }
 
-/* SEARCH SECTION */
 .search-section {
-  padding: 20px 18px;
+  padding: 15px 18px;
   background: var(--white);
   border-bottom: 1px solid var(--border);
 }
 
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--background-desktop);
+  padding: 12px 16px;
+  border-radius: 25px;
+  border: 1px solid var(--accent-border);
+  width: 100%;
+}
+
+.search-input-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.search-input-wrapper input::placeholder {
+  color: #666;
+  opacity: 0.7;
+}
+
+.search-icon {
+  margin-right: 10px;
+  font-size: 18px;
+  opacity: 0.6;
+  color: var(--primary-color);
+}
+
 .search-label {
-  margin-bottom: 10px;
-  font-size: 15px;
-  font-weight: 500;
+  display: none; 
 }
 
 .search-input-wrapper {
@@ -295,6 +330,22 @@ body {
 
 /* DESKTOP MODE FIX */
 @media (min-width: 768px) {
+  .top-header {
+    padding: 12px 15px;
+  }
+  
+  .header-title {
+    font-size: 18px;
+  }
+  
+  .search-section {
+    padding: 12px 15px;
+  }
+  
+  .search-input-wrapper {
+    padding: 10px 14px;
+  }
+
   .dashboard-container {
     max-width: 1200px;
     width: 100%;

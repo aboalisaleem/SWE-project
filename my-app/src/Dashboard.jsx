@@ -53,22 +53,52 @@ export default function Dashboard() {
       {/* MAIN DASHBOARD */}
       <div className="dashboard-container">
         {/* HEADER */}
-        <header className="top-header">
-          <div className="left-menu" onClick={openMenu}>
-            ☰
-          </div>
-          <h1 className="header-title">Dashboard</h1>
-          <Link to="/profile" className="settings-icon">
-            ⚙️
-          </Link>
-        </header>
+{/* HEADER */}
+<header className="top-header" style={{
+  background: '#2c7da0',
+  color: 'white',
+  display: 'flex',
+  justifyContent: 'space-between', 
+  alignItems: 'center',
+  padding: '15px 20px',
+  position: 'relative',
+  minHeight: '60px',
+  width: '100%'
+}}>
+  <div className="left-menu" onClick={openMenu} style={{
+    fontSize: '24px',
+    cursor: 'pointer',
+    color: 'white',
+    zIndex: '1'
+  }}>
+    ☰
+  </div>
+  <h1 className="header-title" style={{
+    margin: '0',
+    fontSize: '20px',
+    fontWeight: '600', 
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    color: 'white'
+  }}>
+    Dashboard
+  </h1>
+  <Link to="/profile" className="settings-icon" style={{
+    fontSize: '22px',
+    textDecoration: 'none',
+    color: 'white',
+    zIndex: '1'
+  }}>
+    ⚙️
+  </Link>
+</header>
 
         {/* SEARCH */}
         <section className="search-section">
-          <p className="search-label">Search for friends</p>
           <div className="search-input-wrapper">
             <span className="search-icon">🔍</span>
-            <input type="search" placeholder="" />
+            <input type="search" placeholder="Search for friends..."/>
           </div>
         </section>
 
