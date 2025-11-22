@@ -8,7 +8,6 @@
   --accent-border: rgba(44, 125, 160, 0.3);
 }
 
-/* Base Reset */
 * {
   box-sizing: border-box;
 }
@@ -19,9 +18,8 @@ body {
   font-family: "Inter", sans-serif;
   background: var(--background-desktop);
   color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  /* FIX: React apps often need this */
+  display: block;
   min-height: 100vh;
 }
 
@@ -30,10 +28,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 550px;
-  width: 100%;
   background: var(--white);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative; /* ADD THIS */
 }
 
 /* HEADER */
@@ -44,6 +44,13 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 18px 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ADD THIS - Missing from your CSS */
+.header-title {
+  margin: 0;
   font-size: 20px;
   font-weight: 600;
 }
@@ -87,6 +94,14 @@ body {
   font-size: 18px;
   opacity: 0.6;
   color: var(--primary-color);
+}
+
+.search-input-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
 }
 
 /* GRID + CARDS */
@@ -135,6 +150,10 @@ body {
   padding: 20px;
   height: 120px;
   text-align: center;
+  /* ADD THIS for proper flex behavior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .small-card:hover {
@@ -148,7 +167,7 @@ body {
   color: var(--primary-color);
 }
 
-/* BOTTOM NAV */
+/* BOTTOM NAV (MOBILE ONLY) */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -159,6 +178,7 @@ body {
   display: flex;
   justify-content: space-around;
   padding: 12px 0;
+  z-index: 1000; /* ADD THIS */
 }
 
 .nav-icon {
@@ -221,6 +241,7 @@ body {
 .sidebar-title {
   font-size: 1.3em;
   font-weight: 700;
+  margin: 0; /* ADD THIS */
 }
 
 .close-btn {
@@ -271,4 +292,46 @@ body {
 .logout-link .link-icon {
   color: #cc0000;
 }
+
+/* DESKTOP MODE FIX */
+@media (min-width: 768px) {
+  .dashboard-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 40px;
+  }
+
+  body {
+    display: block;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+  }
+
+  .large-card {
+    grid-column: span 2;
+    height: 180px;
+  }
+
+  .bottom-cards-container {
+    grid-column: span 4;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+  }
+
+  .small-card {
+    height: 150px;
+  }
+
+  .bottom-nav {
+    display: none;
+  }
+}
+
 

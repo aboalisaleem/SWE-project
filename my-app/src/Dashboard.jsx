@@ -116,7 +116,7 @@ export default function Dashboard() {
           <Link to="/dashboard" className="nav-icon active">
             🏠
           </Link>
-          <Link to="/profile-menu" className="nav-icon">
+          <Link to="/ProfileMenu" className="nav-icon">
             👤
           </Link>
           <Link to="/notifications" className="nav-icon">
