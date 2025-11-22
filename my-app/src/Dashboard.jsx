@@ -26,7 +26,7 @@ export default function Dashboard() {
         </div>
 
         <div className="sidebar-content">
-          <Link to="/profile-menu" className="sidebar-link" onClick={closeMenu}>
+          <Link to="/ProfileMenu" className="sidebar-link" onClick={closeMenu}>
             <span className="link-icon">👤</span> My Profile
           </Link>
 
