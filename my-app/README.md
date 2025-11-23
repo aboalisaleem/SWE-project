@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+#  Student Study Hub – Final Prototype
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Team Members & Contributions
+ # Abdulwahed
+	•	Built core pages using HTML, CSS, and JavaScript
+	•	Implemented global features such as dark mode and layout behavior
+	•	Contributed to overall UI structure and interaction logic
 
-## Available Scripts
+# Hady
+	- Worked on HTML and CSS across multiple pages
+	- Organized the project folder structure
+	- Cleaned and optimized the code to ensure proper distribution and readability
 
-In the project directory, you can run:
+# Ali
+	- Developed components using React.js
+	- Added modern UI practices and contributed to interactive elements
 
-### `npm start`
+##  Overview
+The **Student Study Hub** is a fully responsive **front-end web application** designed to help university students organize their academic life in one unified platform.  
+The system includes tools such as:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Dashboard  
+- To-Do Manager  
+- Study Timer  
+- Weekly Schedule  
+- Chat Rooms  
+- KFUPM Resource Center  
+- Global Settings (Dark Mode + Font Size)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The project focuses on **clean UI/UX**, consistent design, and simple **Vanilla JavaScript logic** using `localStorage` to save user preferences.
 
-### `npm test`
+### 🔧 Technologies Used
+- **HTML** — Page Structure  
+- **CSS** — Grid, Flexbox, Responsive Layouts  
+- **JavaScript (ES6)** — Dynamic behavior, localStorage  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Final Prototype – Implemented Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##  Authentication & Navigation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Login Page**
+- Responsive and clean design  
+- Basic input validation  
 
-### `npm run eject`
+### **Sign-Up Page**
+- Fully styled  
+- Consistent across all device sizes  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Global App Settings** *(Important Feature)*
+- Dark Mode toggle saved using `localStorage`  
+- Font Size selection (Small / Medium / Large)  
+- Settings persist across **every page** using `global_settings.js`  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Dashboard (Main Hub)**
+- Responsive grid layout  
+- Quick access to all tools  
+- Bottom navigation bar  
+- Hamburger sidebar menu  
+- Mobile-first UI  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+##  Productivity Tools
 
-## Learn More
+### ✔️ To-Do List System
+- Add tasks dynamically  
+- Mark tasks as completed  
+- Delete tasks  
+- Auto-save tasks using `localStorage`  
+- Clean, responsive design  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ⏱️ Study Timer
+- Adjustable countdown timer  
+- Start / Pause / Reset  
+- Timer input dialog  
+- Matches the theme (light/dark mode)  
+- Simple and effective for study sessions  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 📅 Weekly Schedule Creator
+- Grid layout for weekly timetable (Sun–Thu)  
+- Add course names and times  
+- Save notes for each class  
+- Interactive and designed for university use  
+- Fully responsive  
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🤝 Collaboration & Resource Tools
 
-### Analyzing the Bundle Size
+### 💬 Chat Interface / Study Rooms
+- Header with room title  
+- Scrollable message area  
+- Input bar fixed at bottom  
+- Works fully on both desktop and mobile  
+- Consistent theming  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 🏛️ KFUPM Resources Page
+- Provides academic resources, university portals, and study materials  
+- Filterable categories (Lectures, Notes, Courses, Services)  
+- Card-based layout using CSS Grid  
 
-### Making a Progressive Web App
+### 🔍 Resources Explorer
+- Organized academic resources  
+- Clickable cards  
+- Easy navigation  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
