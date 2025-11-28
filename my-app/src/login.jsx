@@ -65,14 +65,13 @@ function Login() {
       </form>
       {message && <h2 className="welcome-message">{message}</h2>}
       
-      {/*  كود الاختبار هنا  */}
       <div className="mt-4 p-4 bg-gray-100 rounded">
-        <p className="text-sm text-gray-600">للاختبار فقط:</p>
+        <p className="text-sm text-gray-600">only for test:</p>
         <button 
           onClick={() => navigate('/dashboard')}
           className="bg-green-500 text-white px-4 py-2 rounded mt-2"
         >
-          دخول مباشر للDashboard (تجاوز)
+           (Dashboard )
         </button>
       </div>
       
