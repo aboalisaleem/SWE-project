@@ -40,17 +40,17 @@ All API endpoints were tested using curl commands in the terminal.
 server/
 │
 ├── controllers/
-│   └── userController.js
+│   └── userController.js        # Handles API logic (CRUD operations)
 │
 ├── models/
-│   └── User.js
+│   └── User.js                  # Mongoose schema/model for users
 │
 ├── routes/
-│   └── userRoutes.js
+│   └── userRoutes.js            # Defines API endpoints (/api/users)
 │
-├── server.js
-├── .env
-└── package.json
+├── server.js                    # Main Express server file
+├── .env                         # Environment variables (Mongo URI, PORT)
+└── package.json                 # Dependencies & scripts
 ---
 
 ## 🔧 Technologies Used
