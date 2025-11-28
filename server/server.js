@@ -12,11 +12,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Import routes
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
 
-// MongoDB connection (Mongoose 6+)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log("MongoDB connection error:", err));

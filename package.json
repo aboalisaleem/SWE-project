@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/aboalisaleem/SWE-project/issues"
   },
-  "homepage": "https://github.com/aboalisaleem/SWE-project#readme"
+  "homepage": "https://github.com/aboalisaleem/SWE-project#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
 }
