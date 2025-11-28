@@ -1,4 +1,4 @@
-# 📘 SWE Project — Back-End (Milestone 5)
+#  SWE Project — Back-End (Milestone 5)
 
 This is the back-end implementation for our SWE Project (Milestone 5).  
 The back-end is built using **Node.js**, **Express.js**, and **MongoDB Atlas**.  
@@ -6,16 +6,16 @@ In this milestone, we implemented the server-side logic, RESTful APIs, and conne
 
 ---
 
-## 🚀 Features Implemented
+##  Features Implemented
 
 ### ✔ Node.js + Express Server
 A fully functional Express.js server with proper routing, middleware, and controllers.
 
-### ✔ MongoDB Integration
+###  MongoDB Integration
 The application is connected to **MongoDB Atlas** using Mongoose.  
 Data is stored in a cloud database named **SWEproject-4**.
 
-### ✔ RESTful APIs (Users)
+###  RESTful APIs (Users)
 The back-end supports full CRUD operations:
 
 - **GET** `/api/users` — Retrieve all users  
@@ -24,18 +24,18 @@ The back-end supports full CRUD operations:
 - **PUT** `/api/users/:id` — Update a user  
 - **DELETE** `/api/users/:id` — Delete a user  
 
-### ✔ Error Handling
+###  Error Handling
 A custom error handler is included to return useful error messages.
 
-### ✔ Data Validation (Basic)
+###  Data Validation (Basic)
 Checks for duplicate email before creating a new user.
 
-### ✔ Tested Using CURL
+###  Tested Using CURL
 All API endpoints were tested using curl commands in the terminal.
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 server/
 │
