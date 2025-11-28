@@ -19,8 +19,7 @@ import Schedule from "./Schedule";
 // NEW PAGES
 import Notifications from "./notifications";
 import Settings from "./Settings";
-import ProfileMenu from "./PROFILEMENU";
-
+import ProfileMenu from "./PROFILEMENU.JSX";
 function App() {
   return (
     <Router>

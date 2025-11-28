@@ -1,0 +1,21 @@
+{
+  "name": "swe-project-4",
+  "version": "1.0.0",
+  "description": "•\tBuilt core pages using HTML, CSS, and JavaScript \t•\tImplemented global features such as dark mode and layout behavior \t•\tContributed to overall UI structure and interaction logic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aboalisaleem/SWE-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aboalisaleem/SWE-project/issues"
+  },
+  "homepage": "https://github.com/aboalisaleem/SWE-project#readme"
+}
