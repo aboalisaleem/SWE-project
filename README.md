@@ -40,17 +40,17 @@ All API endpoints were tested using curl commands in the terminal.
 server/
 │
 ├── controllers/
-│   └── userController.js
+│   └── userController.js        # Handles API logic (CRUD operations)
 │
 ├── models/
-│   └── User.js
+│   └── User.js                  # Mongoose schema/model for users
 │
 ├── routes/
-│   └── userRoutes.js
+│   └── userRoutes.js            # Defines API endpoints (/api/users)
 │
-├── server.js
-├── .env
-└── package.json
+├── server.js                    # Main Express server file
+├── .env                         # Environment variables (Mongo URI, PORT)
+└── package.json                 # Dependencies & scripts
 ---
 
 ## 🔧 Technologies Used
@@ -88,3 +88,8 @@ curl -i -X PUT http://127.0.0.1:3000/api/users/USER_ID \
 Delete a User:
 curl -i -X DELETE http://127.0.0.1:3000/api/users/USER_ID
 
+## 📌 Notes
+
+- Sensitive data is hidden using `.env`.
+- Codebase follows modular Express architecture.
+- All CRUD operations were tested manually using terminal commands.
