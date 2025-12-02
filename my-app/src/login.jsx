@@ -7,17 +7,42 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (email === "student@example.com" && password === "1234") {
+    setMessage('');
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:3000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setMessage(`❌ ${data.message || 'Login failed'}`);
+        setLoading(false);
+        return;
+      }
+
+      // Store user data in localStorage
+      localStorage.setItem('user', JSON.stringify(data.user));
+      
       setMessage("✅ Login Successful! Welcome back.");
-      // Redirect to dashboard after 1 second
       setTimeout(() => {
         navigate('/dashboard');
       }, 1000);
-    } else {
-      setMessage("❌ Incorrect email or password.");
+    } catch (err) {
+      setMessage("❌ Failed to connect to server. Please make sure the backend is running.");
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,7 +82,9 @@ function Login() {
           <Link to="/MissingPASS" className="forgot-password-link">Forgot Password?</Link>
         </div>
         <div className="button-group">
-          <button type="submit" className="btn-login">Log in</button>
+          <button type="submit" className="btn-login" disabled={loading}>
+            {loading ? 'Logging in...' : 'Log in'}
+          </button>
           <Link to="/signup" className="btn-signup-link">
             <button type="button" className="btn-signup">Sign up</button>
           </Link>
