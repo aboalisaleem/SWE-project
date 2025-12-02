@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: swe-project-backend
+    env: node
+    branch: main
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    autoDeploy: true
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://hardpass:FNqSUnv07Sce8ZDL@cluster0.vdh1wp8.mongodb.net/SWEproject-4
+      - key: PORT
+        value: '3000'
+      - key: NODE_ENV
+        value: production
