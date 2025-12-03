@@ -1,0 +1,10 @@
+﻿server/
+node_modules/
+**/node_modules/
+.env
+*.env
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+my-app/build
