@@ -10,18 +10,56 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setError('');
+
     if (password !== confirmPassword) {
-      alert("Passwords don't match!");
+      setError("Passwords don't match!");
       return;
     }
-    alert("Account created successfully! Redirecting to login...");
-    // Redirect to login after successful signup
-    setTimeout(() => {
-      navigate('/login');
-    }, 1000);
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:3000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${firstName} ${lastName}`,
+          email,
+          password
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'Failed to create account');
+        setLoading(false);
+        return;
+      }
+
+      alert("Account created successfully! Redirecting to login...");
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    } catch (err) {
+      setError('Failed to connect to server. Please make sure the backend is running.');
+      console.error('Signup error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -94,8 +132,10 @@ function Signup() {
           <a href="#">resend opt!</a>
         </p>
 
-        <button type="submit" className="btn-confirm">
-          confirm
+        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+
+        <button type="submit" className="btn-confirm" disabled={loading}>
+          {loading ? 'Creating account...' : 'confirm'}
         </button>
       </form>
 
