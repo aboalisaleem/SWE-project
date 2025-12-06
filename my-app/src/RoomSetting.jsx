@@ -96,7 +96,7 @@ export default function RoomSetting() {
             </button>
           </div>
 
-          <Link to="/study-room-chat" id="back-btn">
+          <Link to="/chat" id="back-btn">
             Back
           </Link>
         </div>
