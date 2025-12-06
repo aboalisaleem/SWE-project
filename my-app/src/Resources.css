@@ -34,6 +34,7 @@ body {
     background: var(--white);
     min-height: 100vh;
     padding-bottom: 70px;
+    margin: 0 auto;
 }
 
 .page-header {
