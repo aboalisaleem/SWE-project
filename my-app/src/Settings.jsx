@@ -49,7 +49,7 @@ export default function Settings() {
   return (
     <div className="settings-container" id="app-body">
       <header className="page-header">
-        <Link to="/profile-menu" className="back-link">
+        <Link to="/dashboard" className="back-link">
           &larr;
         </Link>
         <h1>Application Settings</h1>
