@@ -91,7 +91,7 @@ export default function RoomSetting() {
           </div>
 
           <div className="action-buttons">
-            <button id="edit-display-btn" onClick={openEditMode}>
+            <button id="edit-display-btn" onClick={() => {}}>
               Edit
             </button>
           </div>
